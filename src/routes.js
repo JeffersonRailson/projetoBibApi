@@ -41,7 +41,12 @@ routes.post(
 // Lendings / Emprestimos
 
 routes.get('/lendings', controllers.LendingController.listLendings)
-routes.get('/teste/:userId', controllers.LendingController.countLendings)
+routes.get(
+  '/lendings/count/:userId',
+  controllers.LendingController.countLendings
+)
+
+routes.get('/lendings/:userId', controllers.LendingController.show)
 
 routes.post('/lending/new', controllers.LendingController.createLending)
 

@@ -16,6 +16,15 @@ class LendingigsController {
     return res.status(200).json(requests)
   }
 
+  async show (req, res) {
+    const data = await Lendings.findAll({
+      where: {
+        user_id: req.params.userId
+      }
+    })
+    return res.json(data)
+  }
+
   async countLendings (req, res) {
     Lendings.findAndCountAll({
       where: {
