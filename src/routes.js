@@ -14,6 +14,8 @@ routes.post('/requests/new', controllers.RequestsController.store)
 // User Routes / Usuário
 routes.get('/users', controllers.UserController.list)
 routes.get('/user/values', controllers.UserController.listUsersValues)
+
+// routes.get('/user/:q/:id', controllers.UserController.snowUserValues)
 routes.post('/user/new', controllers.UserController.store)
 routes.get('/users/:id', controllers.UserController.snow)
 routes.get('/users/q/:name', controllers.UserController.showName)
