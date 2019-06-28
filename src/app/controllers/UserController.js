@@ -1,4 +1,6 @@
 const Model = require('../models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 class UserController {
   async store (req, res) {
@@ -24,6 +26,18 @@ class UserController {
     const user = await Model.User.findOne({ where: { id: req.params.id } })
     console.log(user.name)
     return res.status(200).json(user)
+  }
+
+  async showName (req, res) {
+    console.log(req.params.name)
+    const users = await Model.User.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${req.params.name}%`
+        }
+      }
+    })
+    return res.status(200).json(users)
   }
 }
 
