@@ -1,9 +1,19 @@
 const Sequelize = require('sequelize')
+
+const User = require('./User')
 const db = require('../../config/database')
 const UserValues = db.define(
   'users_values',
   {
-    user_id: Sequelize.INTEGER,
+    user_id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      references: {
+        model: User,
+        key: 'id',
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+      }
+    },
     key: Sequelize.STRING,
     value: Sequelize.STRING,
     ascii: Sequelize.STRING
@@ -13,7 +23,8 @@ const UserValues = db.define(
     schema: 'single',
     references: {
       model: 'users',
-      key: 'id'
+      key: 'id',
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
   }
 )

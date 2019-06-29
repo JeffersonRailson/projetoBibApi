@@ -3,7 +3,15 @@ const db = require('../../config/database')
 const UserFields = db.define(
   'users_fields',
   {
-    key: Sequelize.STRING,
+    key: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'user',
+        key: 'id',
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+      }
+    },
     type: Sequelize.STRING,
     required: Sequelize.BOOLEAN,
     max_length: Sequelize.INTEGER,
@@ -15,11 +23,7 @@ const UserFields = db.define(
   },
   {
     timestamps: false,
-    schema: 'single',
-    references: {
-      model: 'users',
-      key: 'id'
-    }
+    schema: 'single'
   }
 )
 module.exports = UserFields
