@@ -47,8 +47,15 @@ class UserController {
         user_id: req.params.id
       }
     })
-    console.log(req.params.q, req.params.id)
-    return res.status(200).json(user)
+
+    const dataUserArrray = []
+
+    user.map(valueUser => {
+      dataUserArrray.push(valueUser.value)
+    })
+    console.log(dataUserArrray)
+    console.log(req.params.id)
+    return res.status(200).json(dataUserArrray)
   }
 
   async showName (req, res) {
@@ -60,6 +67,7 @@ class UserController {
         }
       }
     })
+
     return res.status(200).json(users)
   }
 }
