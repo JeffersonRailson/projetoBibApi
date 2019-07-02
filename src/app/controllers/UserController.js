@@ -41,6 +41,16 @@ class UserController {
     return res.status(200).json(user)
   }
 
+  async snowValues (req, res) {
+    const user = await Model.UsersValues.findAll({
+      where: {
+        user_id: req.params.id
+      }
+    })
+    console.log(req.params.q, req.params.id)
+    return res.status(200).json(user)
+  }
+
   async showName (req, res) {
     console.log(req.params.name)
     const users = await Model.User.findAll({
