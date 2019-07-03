@@ -53,9 +53,42 @@ class UserController {
     user.map(valueUser => {
       dataUserArrray.push(valueUser.value)
     })
-    console.log(dataUserArrray)
+    const [
+      dataNascimento,
+      ,
+      endereco,
+      ,
+      enderecoComplemento,
+      telTrabalho,
+      enderecoEstado,
+      ,
+      cpf,
+      enderecoNumero,
+      enderecoCidade,
+      telCasa,
+      telCell,
+      ,
+      cep,
+      email
+    ] = dataUserArrray
+    const dataUserValueObj = {
+      dataNascimento,
+      endereco,
+      enderecoComplemento,
+      telTrabalho,
+      enderecoEstado,
+      cpf,
+      enderecoNumero,
+      enderecoCidade,
+      telCasa,
+      telCell,
+      cep,
+      email
+    }
+
+    console.log(dataUserValueObj)
     console.log(req.params.id)
-    return res.status(200).json(dataUserArrray)
+    return res.status(200).json(dataUserValueObj)
   }
 
   async showName (req, res) {
