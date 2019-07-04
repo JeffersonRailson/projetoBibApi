@@ -38,6 +38,14 @@ routes.post(
 
 // Reservations / Reservas
 routes.get('/reservations', controllers.ReservationsController.listReservations)
+routes.get(
+  '/reservations/user/:id',
+  controllers.ReservationsController.snowToUser
+)
+routes.get(
+  '/reservations/book/:id',
+  controllers.ReservationsController.snowToRecord
+)
 routes.post(
   '/reservation/new',
   controllers.ReservationsController.reservationCreate
@@ -69,9 +77,9 @@ routes.post(
 
 // Livro
 
-routes.get('/book/a/:assusto', controllers.BookControllers.showSubject)
-routes.get('/book/t/:titulo', controllers.BookControllers.showTitle)
-routes.get('/book', controllers.BookControllers.listBookValues)
+routes.get('/book/assunto/:assusto', controllers.BookControllers.showSubject)
+routes.get('/book/titulo/:titulo', controllers.BookControllers.showTitle)
+routes.get('/book', controllers.BookControllers.list)
 routes.get('/book/:id', controllers.BookControllers.snow)
 
 module.exports = routes
