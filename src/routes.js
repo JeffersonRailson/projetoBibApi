@@ -67,4 +67,11 @@ routes.post(
   controllers.BiblioAllController.storeBiblioHoldings
 )
 
+// Livro
+
+routes.get('/book/a/:assusto', controllers.BookControllers.showSubject)
+routes.get('/book/t/:titulo', controllers.BookControllers.showTitle)
+routes.get('/book', controllers.BookControllers.listBookValues)
+routes.get('/book/:id', controllers.BookControllers.snow)
+
 module.exports = routes
