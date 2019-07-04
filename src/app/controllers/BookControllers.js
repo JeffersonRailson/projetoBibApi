@@ -8,62 +8,36 @@ class BookController {
     return res.status(200).json(dataBooks)
   }
 
-  async snow (req, res) {
-    const dataBook = await Book.findAll({ where: { record_id: req.params.id } })
-    const dataBookArrray = []
-
-    dataBook.map(valueBook => {
-      dataBookArrray.push(valueBook.phrase)
-    })
-
-    const [autores, publicacao, titulo, assusto, isbn] = dataBookArrray
-    const dataBookObj = {
-      autores,
-      publicacao,
-      titulo,
-      assusto,
-      isbn
-    }
-    return res.status(200).json(dataBookObj)
-  }
-
   async showTitle (req, res) {
-    console.log(req.params.name)
     const data = await Book.findAll({
       where: {
-        indexing_group_id: 1,
+        indexing_group_id: 3,
         phrase: {
           [Op.iLike]: `%${req.params.titulo}%`
         }
       }
     })
-    const [Busca] = data
-
-    let dataBookObj = ''
-
-    if (data[0]) {
-      const bookBusca = await Book.findAll({
-        where: {
-          record_id: Busca.record_id
+    const condicao = data[0]
+    const arrayObjeto = []
+    if (condicao) {
+      for (let i = 0; i < data.length; i++) {
+        let dataBook = await Book.findAll({
+          where: { record_id: data[i].record_id }
+        })
+        let [autores, publicacao, titulo, assusto, isbn] = dataBook
+        let dataBookObj = {
+          autores: autores.phrase,
+          publicacao: publicacao.phrase,
+          titulo: titulo.phrase,
+          assusto: assusto.phrase,
+          isbn: isbn.phrase
         }
-      })
-      const dataBookArrray = []
-
-      bookBusca.map(valueBook => {
-        dataBookArrray.push(valueBook.phrase)
-      })
-
-      const [autores, publicacao, titulo, assusto, isbn] = dataBookArrray
-      dataBookObj = {
-        autores,
-        publicacao,
-        titulo,
-        assusto,
-        isbn
+        arrayObjeto.push(dataBookObj)
       }
-      return res.status(200).json(dataBookObj)
+
+      return res.status(200).json(arrayObjeto)
     } else {
-      return res.status(400).json({ awfawf: 'wadawdawd' })
+      return res.status(200).json({ msg: 'sad' })
     }
   }
 
@@ -76,35 +50,35 @@ class BookController {
         }
       }
     })
-
-    const [Busca] = data
-
-    let dataBookObj = ''
-
-    if (data[0]) {
-      const bookBusca = await Book.findAll({
-        where: {
-          record_id: Busca.record_id
+    console.log(!!data[0])
+    const condicao = data[0]
+    const arrayObjeto = []
+    if (condicao) {
+      for (let i = 0; i < data.length; i++) {
+        let dataBook = await Book.findAll({
+          where: { record_id: data[i].record_id }
+        })
+        let [autores, publicacao, titulo, assusto, isbn] = dataBook
+        let dataBookObj = {
+          autores: autores.phrase,
+          publicacao: publicacao.phrase,
+          titulo: titulo.phrase,
+          assunto: assusto.phrase,
+          isbn: isbn.phrase
         }
-      })
-      const dataBookArrray = []
-
-      bookBusca.map(valueBook => {
-        dataBookArrray.push(valueBook.phrase)
-      })
-
-      const [autores, publicacao, titulo, assusto, isbn] = dataBookArrray
-      dataBookObj = {
-        autores,
-        publicacao,
-        titulo,
-        assusto,
-        isbn
+        arrayObjeto.push(dataBookObj)
       }
-      return res.status(200).json(dataBookObj)
+
+      return res.status(200).json(arrayObjeto)
     } else {
-      return res.status(400).json({ awfawf: 'wadawdawd' })
+      return res.status(200).json({ msg: 'sad' })
     }
+  }
+
+  async snow (req, res) {
+    const dataBook = await Book.findAll({ where: { record_id: req.params.id } })
+    console.log(dataBook)
+    return res.status(200).json(dataBook)
   }
 }
 
