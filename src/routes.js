@@ -80,4 +80,6 @@ routes.post(
 routes.get('/book/assunto/:assusto', controllers.BookControllers.showSubject)
 routes.get('/book/titulo/:titulo', controllers.BookControllers.showTitle)
 routes.get('/book', controllers.BookControllers.list)
+routes.get('/book/:id', controllers.BookControllers.snow)
+
 module.exports = routes

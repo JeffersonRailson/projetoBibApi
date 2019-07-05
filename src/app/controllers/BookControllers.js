@@ -24,12 +24,12 @@ class BookController {
         let dataBook = await Book.findAll({
           where: { record_id: data[i].record_id }
         })
-        let [autores, publicacao, titulo, assusto, isbn] = dataBook
+        let [autores, publicacao, titulo, assunto, isbn] = dataBook
         let dataBookObj = {
           autores: autores.phrase,
           publicacao: publicacao.phrase,
           titulo: titulo.phrase,
-          assusto: assusto.phrase,
+          assunto: assunto.phrase,
           isbn: isbn.phrase
         }
         arrayObjeto.push(dataBookObj)
@@ -50,7 +50,6 @@ class BookController {
         }
       }
     })
-    console.log(!!data[0])
     const condicao = data[0]
     const arrayObjeto = []
     if (condicao) {
@@ -77,8 +76,22 @@ class BookController {
 
   async snow (req, res) {
     const dataBook = await Book.findAll({ where: { record_id: req.params.id } })
-    console.log(dataBook)
-    return res.status(200).json(dataBook)
+
+    const condicao = dataBook[0]
+    if (condicao) {
+      const [autores, publicacao, titulo, assunto, isbn] = dataBook
+      let dataBookObj = {
+        autores: autores.phrase,
+        publicacao: publicacao.phrase,
+        titulo: titulo.phrase,
+        assunto: assunto.phrase,
+        isbn: isbn.phrase
+      }
+
+      return res.status(200).json(dataBookObj)
+    } else {
+      return res.status(200).json({ msg: 'sad' })
+    }
   }
 }
 
