@@ -30,10 +30,14 @@ class BiblioAllController {
   }
   async listBiblioHoldings (req, res) {
     const biblioRecordsAll = await Biblio.BiblioHoldings.findAll()
-    return res.status(200).json({
-      msg: 'Listando todos os exemplares',
-      biblioRecordsAll
+    return res.status(200).json(biblioRecordsAll)
+  }
+
+  async Teste (req, res) {
+    const dataBiblioHoldings = await Biblio.BiblioHoldings.findOne({
+      where: { id: 13 }
     })
+    return res.status(200).json(dataBiblioHoldings)
   }
 }
 

@@ -26,6 +26,7 @@ class BookController {
         })
         let [autores, publicacao, titulo, assunto, isbn] = dataBook
         let dataBookObj = {
+          id: titulo.record_id,
           autores: autores.phrase,
           publicacao: publicacao.phrase,
           titulo: titulo.phrase,
@@ -59,6 +60,7 @@ class BookController {
         })
         let [autores, publicacao, titulo, assusto, isbn] = dataBook
         let dataBookObj = {
+          id: titulo.record_id,
           autores: autores.phrase,
           publicacao: publicacao.phrase,
           titulo: titulo.phrase,
@@ -81,6 +83,7 @@ class BookController {
     if (condicao) {
       const [autores, publicacao, titulo, assunto, isbn] = dataBook
       let dataBookObj = {
+        id: titulo.record_id,
         autores: autores.phrase,
         publicacao: publicacao.phrase,
         titulo: titulo.phrase,

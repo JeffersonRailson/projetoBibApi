@@ -35,34 +35,7 @@ routes.post(
   '/biblio/records/new',
   controllers.BiblioAllController.storeBiblioRecords
 )
-
-// Reservations / Reservas
-routes.get('/reservations', controllers.ReservationsController.listReservations)
-routes.get(
-  '/reservations/user/:id',
-  controllers.ReservationsController.snowToUser
-)
-routes.get(
-  '/reservations/book/:id',
-  controllers.ReservationsController.snowToRecord
-)
-routes.post(
-  '/reservation/new',
-  controllers.ReservationsController.reservationCreate
-)
-
-// Lendings / Emprestimos
-
-routes.get('/lendings', controllers.LendingController.listLendings)
-routes.get(
-  '/lendings/count/:userId',
-  controllers.LendingController.countLendings
-)
-
-routes.get('/lendings/:userId', controllers.LendingController.show)
-
-routes.post('/lending/new', controllers.LendingController.createLending)
-
+/// ////////////////////////////////////////////////////////////////////
 // Biblio_Holdings / Exemplares
 
 routes.get(
@@ -74,7 +47,46 @@ routes.post(
   '/biblio/holding/new',
   controllers.BiblioAllController.storeBiblioHoldings
 )
+routes.get('/biblio/teste', controllers.BiblioAllController.Teste)
 
+/// ////////////////////////////////////////////////////////////////////
+// Lendings / Emprestimos
+
+routes.get('/lendings', controllers.LendingController.listLendings)
+routes.get(
+  '/lendings/count/:userId',
+  controllers.LendingController.countLendings
+)
+
+routes.get('/lendings/:userId', controllers.LendingController.show)
+
+routes.post('/lending/new', controllers.LendingController.createLending)
+routes.get(
+  '/lending/user/book/:id',
+  controllers.LendingController.snowToUserBook
+)
+
+/// ////////////////////////////////////////////////////////////////////
+
+// Reservations / Reservas
+routes.get('/reservations', controllers.ReservationsController.listReservations)
+routes.get(
+  '/reservations/user/:id',
+  controllers.ReservationsController.snowToUser
+)
+routes.get(
+  '/reservations/user/book/:id',
+  controllers.ReservationsController.snowToUserBook
+)
+routes.get(
+  '/reservations/book/:id',
+  controllers.ReservationsController.snowToRecord
+)
+routes.post(
+  '/reservation/new',
+  controllers.ReservationsController.reservationCreate
+)
+/// ////////////////////////////////////////////////////////////////////
 // Livro
 
 routes.get('/book/assunto/:assusto', controllers.BookControllers.showSubject)
